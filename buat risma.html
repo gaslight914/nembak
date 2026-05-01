@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Risma 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff9ecb, #ffd6eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* BOX */
+.container {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 25px;
+  width: 80%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255,105,180,0.6);
+  color: #fff;
+  z-index: 2;
+}
+
+/* TEXT BIAR JELAS */
+.typing {
+  border-right: 2px solid #fff;
+  white-space: pre-wrap;
+  overflow: hidden;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff4da6;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 12px #ff4da6;
+}
+
+button:hover {
+  background: #ff66b2;
+}
+
+/* LOVE JATUH */
+.heart {
+  position: absolute;
+  top: -20px;
+  color: #ff4da6;
+  font-size: 18px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* BUNGA BACKGROUND */
+.flower {
+  position: absolute;
+  color: rgba(255,255,255,0.5);
+  font-size: 20px;
+  animation: float 10s infinite linear;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div id="text" class="typing"></div>
+  <button id="nextBtn" onclick="nextSlide()" style="display:none;">Lanjut 💖</button>
+</div>
+
+<script>
+const slides = [
+`HAII RISMAA CANTIIKK KUU, TAU LAH INI SIAPA, YAP AKU "PITFALL" NAH JADII DISINII AKUU MAUU NGOMONGG SESUATUU NIHH`,
+`KAYAKNYAA KITTAA BENERANN UDAHH LAMAA BANGETT NIHH KENALL KANN, JADII AKUU MAUU JUJUR SAMA KAMUU NIHH SAYAANGG`,
+`AYYYUUKK BALIKANN MAUU GAKK, TAPII... aku tau aku gak peka, aku tau aku b aja, aku tau askinya aku bukan tipe kamu, aku sering bentak kamu, aku sering kecewain kamu, aku suka bikin kamu sakit, aku suka diemin kamu, aku suka bentak kamu di hubungan kita, aku gak ngapa ngalain, aku gak tau harus apa, aku gak peka, kamu terus yang megang beban di hubungan kita, JADII PIKIRR PIKIRR LAGII YAHH SAYANGG KAMUU MAUU BALIKANN ATAUU ENGGAKK, TAPI INGET YANG AKU BILANG INI, KAMU HARUS BEENET BENER MIKIR SERIUS`,
+`JADI KETIK YAH SAYANG KEE WA AKUU, AKUU TUNGGU KOKK, GAKK HARUSS CEPETT CEPETT JUGGAAA 💖`
+];
+
+let index = 0;
+let charIndex = 0;
+const textEl = document.getElementById("text");
+const btn = document.getElementById("nextBtn");
+
+function typeText() {
+  if (charIndex < slides[index].length) {
+    textEl.innerHTML += slides[index].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeText, 35);
+  } else {
+    btn.style.display = "inline-block";
+  }
+}
+
+function nextSlide() {
+  index++;
+  if (index < slides.length) {
+    textEl.innerHTML = "";
+    charIndex = 0;
+    btn.style.display = "none";
+    typeText();
+  } else {
+    textEl.innerHTML = "💖 Makasih udah baca 💖";
+    btn.style.display = "none";
+  }
+}
+
+/* GENERATE LOVE JATUH */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}, 800);
+
+/* GENERATE BUNGA */
+for (let i = 0; i < 10; i++) {
+  const flower = document.createElement("div");
+  flower.className = "flower";
+  flower.innerHTML = "🌸";
+  flower.style.left = Math.random() * 100 + "vw";
+  flower.style.animationDuration = (8 + Math.random() * 5) + "s";
+  document.body.appendChild(flower);
+}
+
+typeText();
+</script>
+
+</body>
+</html>
